@@ -100,7 +100,7 @@ const PaymentProvidersSection = () => {
     <div
       id="integrations"
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -122,7 +122,7 @@ const PaymentProvidersSection = () => {
           <h2 className="text-5xl font-bold mb-4 text-white">
             Integrated Payment Solutions
           </h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-transparent via-[#39e114] to-transparent mx-auto mb-6"></div>
+          <div className="w-24 h-1.5 bg-linear-to-r from-transparent via-[#39e114] to-transparent mx-auto mb-6"></div>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Accept payments from all major banks and mobile money providers in
             Kenya and beyond
@@ -164,7 +164,18 @@ const PaymentProvidersSection = () => {
   );
 };
 
-const ProviderCard = ({ provider, index, isVisible }) => {
+interface ProviderCardProps {
+  index: number;
+  isVisible: boolean;
+  provider: {
+    name: string;
+    logo: string;
+    description: string;
+    color: string;
+  };
+}
+
+const ProviderCard = ({ provider, index, isVisible }: ProviderCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -174,21 +185,21 @@ const ProviderCard = ({ provider, index, isVisible }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative bg-gradient-to-br from-gray-800 to-slate-800 rounded-2xl p-8 h-full border border-gray-700 hover:border-[#39e114] transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-[#39e114]/20">
+      <div className="relative bg-linear-to-br from-gray-800 to-slate-800 rounded-2xl p-8 h-full border border-gray-700 hover:border-[#39e114] transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-[#39e114]/20">
         {/* Glow effect */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${provider.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+          className={`absolute inset-0 bg-linear-to-br ${provider.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
         ></div>
 
         {/* Shimmer effect */}
         <div
-          className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent ${isHovered ? "" : "hidden"}`}
+          className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/5 to-transparent ${isHovered ? "" : "hidden"}`}
         ></div>
 
         {/* Logo */}
         <div className="relative mb-4">
           <div
-            className={`text-3xl font-bold bg-gradient-to-br ${provider.color} bg-clip-text text-transparent transform transition-all duration-500 ${isHovered ? "scale-110" : "scale-100"}`}
+            className={`text-3xl font-bold bg-linear-to-br ${provider.color} bg-clip-text text-transparent transform transition-all duration-500 ${isHovered ? "scale-110" : "scale-100"}`}
           >
             {provider.logo}
           </div>
@@ -215,7 +226,20 @@ const ProviderCard = ({ provider, index, isVisible }) => {
   );
 };
 
-const FeatureCard = ({ feature, index }) => {
+interface FeatureCardProps {
+  feature: {
+    icon: React.ForwardRefExoticComponent<
+      Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
+        title?: string;
+        titleId?: string;
+      } & React.RefAttributes<SVGSVGElement>
+    >;
+    title: string;
+    description: string;
+  };
+  index: number;
+}
+const FeatureCard = ({ feature, index }: FeatureCardProps) => {
   const Icon = feature.icon;
   const [isHovered, setIsHovered] = useState(false);
 
@@ -225,11 +249,11 @@ const FeatureCard = ({ feature, index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative bg-gradient-to-br from-gray-800/50 to-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-[#39e114]/50 transition-all duration-500">
+      <div className="relative bg-linear-to-br from-gray-800/50 to-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-[#39e114]/50 transition-all duration-500">
         {/* Icon */}
         <div className="mb-4">
           <div
-            className={`w-12 h-12 rounded-lg bg-gradient-to-br from-[#39e114]/20 to-emerald-600/20 flex items-center justify-center transform transition-all duration-500 ${isHovered ? "scale-110 rotate-6" : "scale-100 rotate-0"}`}
+            className={`w-12 h-12 rounded-lg bg-linear-to-br from-[#39e114]/20 to-emerald-600/20 flex items-center justify-center transform transition-all duration-500 ${isHovered ? "scale-110 rotate-6" : "scale-100 rotate-0"}`}
           >
             <Icon className="w-6 h-6 text-[#39e114]" />
           </div>

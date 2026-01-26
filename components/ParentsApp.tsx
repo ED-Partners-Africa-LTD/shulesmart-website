@@ -10,6 +10,14 @@ import {
   CalendarIcon,
   ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
+import {
+  HiBellAlert,
+  HiClipboardDocumentCheck,
+  HiCurrencyDollar,
+} from "react-icons/hi2";
+import { IoCalendar } from "react-icons/io5";
+import { IconType } from "react-icons";
+import { FaChartBar } from "react-icons/fa";
 
 const ParentAppSection = () => {
   const sectionRef = useRef(null);
@@ -70,7 +78,7 @@ const ParentAppSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-br from-white via-gray-50 to-slate-50 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-screen bg-linear-to-br from-white via-gray-50 to-slate-50 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -91,14 +99,14 @@ const ParentAppSection = () => {
               </span>
             </div>
 
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-6 bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
               Keep Parents in the Loop
             </h2>
 
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Empower parents with real-time insights into their child's
-              academic journey. Our mobile app puts everything parents need
-              right at their fingertips.
+              Empower parents with real-time insights into their childs academic
+              journey. Our mobile app puts everything parents need right at
+              their fingertips.
             </p>
 
             {/* Feature Grid */}
@@ -120,7 +128,7 @@ const ParentAppSection = () => {
                   <ArrowDownTrayIcon className="w-5 h-5" />
                   Download on App Store
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-emerald-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
 
               <button className="group relative px-8 py-4 bg-gray-900 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
@@ -128,7 +136,7 @@ const ParentAppSection = () => {
                   <ArrowDownTrayIcon className="w-5 h-5" />
                   Get it on Google Play
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-gray-800 to-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </div>
 
@@ -152,7 +160,21 @@ const ParentAppSection = () => {
   );
 };
 
-const FeatureItem = ({ feature, index, isVisible }) => {
+interface FeatureItemProps {
+  index: number;
+  isVisible: boolean;
+  feature: {
+    icon: React.ForwardRefExoticComponent<
+      Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
+        title?: string;
+        titleId?: string;
+      } & React.RefAttributes<SVGSVGElement>
+    >;
+    title: string;
+    description: string;
+  };
+}
+const FeatureItem = ({ feature, index, isVisible }: FeatureItemProps) => {
   const Icon = feature.icon;
   const [isHovered, setIsHovered] = useState(false);
 
@@ -164,7 +186,7 @@ const FeatureItem = ({ feature, index, isVisible }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#39e114] to-emerald-600 rounded-lg flex items-center justify-center transform transition-all duration-300 ${isHovered ? "scale-110 rotate-6" : "scale-100 rotate-0"}`}
+        className={`shrink-0 w-10 h-10 bg-linear-to-br from-[#39e114] to-emerald-600 rounded-lg flex items-center justify-center transform transition-all duration-300 ${isHovered ? "scale-110 rotate-6" : "scale-100 rotate-0"}`}
       >
         <Icon className="w-5 h-5 text-white" />
       </div>
@@ -176,7 +198,11 @@ const FeatureItem = ({ feature, index, isVisible }) => {
   );
 };
 
-const StatItem = ({ number, label }) => {
+interface StatItemProps {
+  number: string;
+  label: string;
+}
+const StatItem = ({ number, label }: StatItemProps) => {
   return (
     <div className="text-center">
       <div className="text-3xl font-bold text-[#39e114] mb-1">{number}</div>
@@ -202,7 +228,7 @@ const PhoneMockup = () => {
         {/* Screen */}
         <div className="relative bg-white rounded-[2.5rem] overflow-hidden h-[600px]">
           {/* Status Bar */}
-          <div className="bg-gradient-to-br from-[#39e114] to-emerald-600 px-6 py-4 text-white">
+          <div className="bg-linear-to-br from-[#39e114] to-emerald-600 px-6 py-4 text-white">
             <div className="flex justify-between items-center text-xs mb-4">
               <span>9:41</span>
               <div className="flex gap-1">
@@ -223,13 +249,13 @@ const PhoneMockup = () => {
                 title="Fee Balance"
                 value="KES 15,000"
                 color="from-blue-500 to-blue-600"
-                icon={CurrencyDollarIcon}
+                Icon={HiCurrencyDollar}
               />
               <QuickStatCard
                 title="Average Grade"
                 value="B+"
                 color="from-[#39e114] to-emerald-600"
-                icon={ChartBarIcon}
+                Icon={FaChartBar}
               />
             </div>
 
@@ -240,19 +266,19 @@ const PhoneMockup = () => {
               </h4>
 
               <ActivityItem
-                icon={BellAlertIcon}
+                Icon={HiBellAlert}
                 title="Math Exam Tomorrow"
                 time="2 hours ago"
                 color="text-orange-500"
               />
               <ActivityItem
-                icon={ClipboardDocumentCheckIcon}
+                Icon={HiClipboardDocumentCheck}
                 title="Report Card Available"
                 time="1 day ago"
                 color="text-[#39e114]"
               />
               <ActivityItem
-                icon={CalendarIcon}
+                Icon={IoCalendar}
                 title="Parent-Teacher Meeting"
                 time="3 days ago"
                 color="text-blue-500"
@@ -260,7 +286,7 @@ const PhoneMockup = () => {
             </div>
 
             {/* Action Button */}
-            <button className="w-full bg-gradient-to-r from-[#39e114] to-emerald-600 text-white font-semibold py-3 rounded-xl shadow-lg">
+            <button className="w-full bg-linear-to-r from-[#39e114] to-emerald-600 text-white font-semibold py-3 rounded-xl shadow-lg">
               Pay Fees Now
             </button>
           </div>
@@ -289,10 +315,16 @@ const PhoneMockup = () => {
   );
 };
 
-const QuickStatCard = ({ title, value, color, icon: Icon }) => {
+interface QuickStatCardProps {
+  title: string;
+  value: string;
+  color: string;
+  Icon: IconType;
+}
+const QuickStatCard = ({ title, value, color, Icon }: QuickStatCardProps) => {
   return (
     <div
-      className={`bg-gradient-to-br ${color} rounded-xl p-3 text-white shadow-lg`}
+      className={`bg-linear-to-br ${color} rounded-xl p-3 text-white shadow-lg`}
     >
       <Icon className="w-5 h-5 mb-2 opacity-80" />
       <div className="text-xs opacity-90 mb-1">{title}</div>
@@ -301,11 +333,17 @@ const QuickStatCard = ({ title, value, color, icon: Icon }) => {
   );
 };
 
-const ActivityItem = ({ icon: Icon, title, time, color }) => {
+interface ActivityItemProps {
+  title: string;
+  time: string;
+  color: string;
+  Icon: IconType;
+}
+const ActivityItem = ({ Icon, title, time, color }: ActivityItemProps) => {
   return (
     <div className="flex items-start gap-3 pb-3 border-b border-gray-200 last:border-0 last:pb-0">
       <div
-        className={`w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0`}
+        className={`w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center shrink-0`}
       >
         <Icon className={`w-4 h-4 ${color}`} />
       </div>
