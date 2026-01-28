@@ -5,7 +5,7 @@ import ParentAppSection from "@/components/ParentsApp";
 import PricingSection from "@/components/Pricing";
 import PaymentProvidersSection from "@/components/Providers";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import Image from "next/image";
+//import Image from "next/image";
 
 export default function Home() {
   return (
