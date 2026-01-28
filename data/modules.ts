@@ -1,3 +1,4 @@
+// The data for the modules
 export const modules = [
   {
     name: "Admissions",

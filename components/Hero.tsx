@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 
+// The navigation links for the website
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Modules", href: "#modules" },
@@ -12,11 +13,17 @@ const navigation = [
   { name: "Pricing", href: "#pricing" },
 ];
 
+/**
+ * The Hero component is the first thing users see when they visit the website.
+ * It contains the navigation bar, a call to action, and a background image.
+ */
 export default function Hero() {
+  // The state for the mobile menu
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="isolate bg-white">
+      {/* The background image */}
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
         <svg
           className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
@@ -43,14 +50,16 @@ export default function Hero() {
           </defs>
         </svg>
       </div>
+      {/* The navigation bar */}
       <div className="px-6 pt-6 lg:px-8">
         <nav className="flex items-center justify-between" aria-label="Global">
+          {/* The logo */}
           <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <Image
                 className="h-16 w-auto"
-                src="/logosms.png"
+                src="/images/logosms.png"
                 alt="ShuleSmart Logo"
                 width={200}
                 height={64}
@@ -58,6 +67,7 @@ export default function Hero() {
               />
             </Link>
           </div>
+          {/* The mobile menu button */}
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -68,6 +78,7 @@ export default function Hero() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
+          {/* The desktop navigation links */}
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
               <a
@@ -81,6 +92,7 @@ export default function Hero() {
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
         </nav>
+        {/* The mobile menu */}
         <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
           <Dialog.Panel className="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
             <div className="flex items-center justify-between">
@@ -88,7 +100,7 @@ export default function Hero() {
                 <span className="sr-only">ShuleSmart</span>
                 <Image
                   className="h-8 w-auto z-50"
-                  src="/logosms.png"
+                  src="/images/logosms.png"
                   alt=""
                   width={20}
                   height={10}
@@ -122,6 +134,7 @@ export default function Hero() {
           </Dialog.Panel>
         </Dialog>
       </div>
+      {/* The main content */}
       <main>
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
@@ -150,6 +163,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
+          {/* The background image */}
           <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
             <svg
               className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
