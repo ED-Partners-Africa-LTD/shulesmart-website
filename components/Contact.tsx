@@ -1,10 +1,57 @@
+"use client";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 /**
  * The Contact component displays a contact form and contact information.
  */
 
 export default function Contact() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("Submitting...");
+
+    const payload = {
+      name: "ShuleSmart Website Contact Form",
+      subject: subject,
+      message: `Name: ${fullName}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
+      topicId: 86,
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFullName("");
+        setEmail("");
+        setPhone("");
+        setSubject("");
+        setMessage("");
+      } else {
+        const errorData = await response.json();
+        console.error("Submission failed:", errorData);
+        setStatus("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      setStatus("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div id="contact" className="relative bg-white">
       {/* The background */}
@@ -58,7 +105,10 @@ export default function Contact() {
         {/* The contact form */}
         <div className="bg-white py-16 px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
           <div className="mx-auto max-w-lg lg:max-w-none">
-            <form action="#" method="POST" className="grid grid-cols-1 gap-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 gap-y-6"
+            >
               <div>
                 <label htmlFor="full-name" className="sr-only">
                   Full name
@@ -68,7 +118,10 @@ export default function Contact() {
                   name="full-name"
                   id="full-name"
                   autoComplete="name"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  required
+                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black"
                   placeholder="Full name"
                 />
               </div>
@@ -81,7 +134,10 @@ export default function Contact() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black"
                   placeholder="Email"
                 />
               </div>
@@ -94,8 +150,26 @@ export default function Contact() {
                   name="phone"
                   id="phone"
                   autoComplete="tel"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black"
                   placeholder="Phone"
+                />
+              </div>
+              <div>
+                <label htmlFor="subject" className="sr-only">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  name="subject"
+                  id="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  required
+                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black"
+                  placeholder="Subject"
                 />
               </div>
               <div>
@@ -106,19 +180,23 @@ export default function Contact() {
                   id="message"
                   name="message"
                   rows={4}
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
+                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black"
                   placeholder="Message"
-                  defaultValue={""}
                 />
               </div>
               <div>
                 <button
                   type="submit"
+                  disabled={status === "Submitting..."}
                   className="inline-flex justify-center rounded-md border border-transparent bg-[#39e114] py-3 px-6 text-base font-medium text-white shadow-sm  focus:outline-none"
                 >
-                  Submit
+                  {status === "Submitting..." ? "Submitting..." : "Submit"}
                 </button>
               </div>
+              {status && <p className="mt-2 text-sm text-gray-500">{status}</p>}
             </form>
           </div>
         </div>
