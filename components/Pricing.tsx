@@ -2,10 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CheckIcon, SparklesIcon } from "@heroicons/react/24/outline";
 
+/**
+ * The PricingSection component displays the pricing plans for the application.
+ */
 const PricingSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  // The features for the Class A plan
   const classAFeatures = [
     "Student & Staff Management",
     "Fee Collection & Invoicing",
@@ -14,6 +18,7 @@ const PricingSection = () => {
     "Email Support",
   ];
 
+  // The features for the Class B plan
   const classBFeatures = [
     "Everything in Class A",
     "Exam Analysis & Grading",
@@ -24,6 +29,7 @@ const PricingSection = () => {
     "Priority Email Support",
   ];
 
+  // The features for the Class C plan
   const classCFeatures = [
     "Everything in Class B",
     "Advanced HR/Payroll System",
@@ -36,6 +42,7 @@ const PricingSection = () => {
     "On-site Training",
   ];
 
+  // Animate the section when it is visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -60,15 +67,15 @@ const PricingSection = () => {
           className={`text-center transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
         >
           <div className="inline-block px-4 py-2 bg-[#39e114] bg-opacity-10 rounded-full border border-[#39e114] border-opacity-20 mb-6">
-            <span className="text-[#39e114] text-sm font-semibold">
+            <span className="text-[white] text-sm font-semibold">
               FLEXIBLE PRICING
             </span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold tracking-ti ght text-white sm:text-4xl lg:text-5xl">
             The Right Plan for Your School
           </h2>
           <p className="mx-auto mt-3 max-w-4xl text-xl text-gray-300 sm:mt-5 sm:text-2xl">
-            Choose a plan based on your school's fee structure. All plans
+            Choose a plan based on your school&apos;s fee structure. All plans
             include setup, training, and VAT.
           </p>
         </div>
@@ -79,7 +86,7 @@ const PricingSection = () => {
           <div className="absolute inset-0 h-5/6 bg-gray-900 lg:h-2/3" />
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="relative lg:grid lg:grid-cols-7">
-              {/* Class A Plan */}
+              {/* The Class A plan */}
               <div
                 className={`mx-auto max-w-md lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:mx-0 lg:max-w-none transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
@@ -144,7 +151,7 @@ const PricingSection = () => {
                 </div>
               </div>
 
-              {/* Class B Plan - Most Popular */}
+              {/* The Class B plan (most popular) */}
               <div
                 className={`mx-auto mt-10 max-w-lg lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-4 lg:mx-0 lg:mt-0 lg:max-w-none transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
@@ -219,7 +226,7 @@ const PricingSection = () => {
                 </div>
               </div>
 
-              {/* Class C Plan */}
+              {/* The Class C plan */}
               <div
                 className={`mx-auto mt-10 max-w-md lg:col-start-6 lg:col-end-8 lg:row-start-2 lg:row-end-3 lg:m-0 lg:max-w-none transition-all duration-1000 delay-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
@@ -288,7 +295,7 @@ const PricingSection = () => {
         </div>
       </div>
 
-      {/* Additional Info */}
+      {/* The additional information section */}
       <div className="px-6 pb-12 lg:px-8 lg:pb-20">
         <div
           className={`mx-auto max-w-4xl text-center transition-all duration-1000 delay-800 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}

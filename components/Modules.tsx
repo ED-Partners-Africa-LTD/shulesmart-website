@@ -13,6 +13,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
+// The interface for a module
 interface Module {
   icon: React.ForwardRefExoticComponent<
     Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
@@ -26,11 +27,16 @@ interface Module {
   href: string;
 }
 
+/**
+ * The ModulesSection component displays a list of modules that are available in the system.
+ */
+
 const ModulesSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  const modules = [
+  // The list of modules
+  const modules: Module[] = [
     {
       icon: ClipboardDocumentListIcon,
       title: "Admissions",
@@ -121,6 +127,7 @@ const ModulesSection = () => {
     },
   ];
 
+  // Animate the section when it is visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -145,7 +152,7 @@ const ModulesSection = () => {
       className="min-h-screen bg-linear-to-br from-slate-50 via-gray-50 to-slate-100 py-20 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+        {/* The header of the section */}
         <div
           className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
         >
@@ -159,7 +166,7 @@ const ModulesSection = () => {
           </p>
         </div>
 
-        {/* Modules Grid */}
+        {/* The grid of modules */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {modules.map((module, index) => (
             <ModuleCard
@@ -175,12 +182,19 @@ const ModulesSection = () => {
   );
 };
 
+// The props for the ModuleCard component
 interface ModuleCardProps {
   module: Module;
   index: number;
   isVisible: boolean;
 }
 
+/**
+ * The ModuleCard component displays a single module.
+ * @param module The module to display
+ * @param index The index of the module
+ * @param isVisible Whether the section is visible or not
+ */
 const ModuleCard = ({ module, index, isVisible }: ModuleCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const Icon = module.icon;
@@ -192,19 +206,19 @@ const ModuleCard = ({ module, index, isVisible }: ModuleCardProps) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Card */}
+      {/* The card */}
       <div className="relative bg-white rounded-2xl p-6 h-full shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
-        {/* Animated gradient background on hover */}
+        {/* The animated gradient background on hover */}
         <div
           className={`absolute inset-0 bg-linear-to-br ${module.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
         ></div>
 
-        {/* Animated border effect */}
+        {/* The animated border effect */}
         <div
           className={`absolute inset-0 rounded-2xl transition-all duration-500 ${isHovered ? "ring-2 ring-[#39e114] ring-opacity-50" : ""}`}
         ></div>
 
-        {/* Icon container */}
+        {/* The icon container */}
         <div className="relative mb-4">
           <div
             className={`w-14 h-14 rounded-xl bg-linear-to-br ${module.color} p-3 transform transition-all duration-500 ${isHovered ? "scale-110 rotate-6" : "scale-100 rotate-0"}`}
@@ -212,13 +226,13 @@ const ModuleCard = ({ module, index, isVisible }: ModuleCardProps) => {
             <Icon className="w-full h-full text-white" />
           </div>
 
-          {/* Decorative pulse effect */}
+          {/* The decorative pulse effect */}
           <div
             className={`absolute inset-0 w-14 h-14 rounded-xl bg-[#39e114] opacity-0 ${isHovered ? "animate-ping" : ""}`}
           ></div>
         </div>
 
-        {/* Content */}
+        {/* The content of the card */}
         <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#39e114] transition-colors duration-300">
           {module.title}
         </h3>
@@ -227,7 +241,7 @@ const ModuleCard = ({ module, index, isVisible }: ModuleCardProps) => {
           {module.description}
         </p>
 
-        {/* Learn More Button */}
+        {/* The learn more button */}
         <Link
           href={module.href}
           className="relative inline-flex items-center gap-2 text-sm font-semibold text-[#39e114] group/btn overflow-hidden"
@@ -249,13 +263,13 @@ const ModuleCard = ({ module, index, isVisible }: ModuleCardProps) => {
             />
           </svg>
 
-          {/* Animated underline */}
+          {/* The animated underline */}
           <span
             className={`absolute bottom-0 left-0 h-0.5 bg-[#39e114] transition-all duration-300 ${isHovered ? "w-full" : "w-0"}`}
           ></span>
         </Link>
 
-        {/* Corner decoration */}
+        {/* The corner decoration */}
         <div
           className={`absolute top-0 right-0 w-20 h-20 bg-linear-to-br ${module.color} opacity-5 rounded-bl-full transform transition-all duration-500 ${isHovered ? "scale-150" : "scale-100"}`}
         ></div>

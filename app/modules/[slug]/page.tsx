@@ -3,10 +3,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-// This would be your actual import
+// This would be the actual import
 // import { modules } from "@/data/modules";
 
-// Mock module data - replace with your actual data structure
+// Mock module data - to be replaced with actual data structure
 const modules = [
   {
     slug: "admissions",
@@ -99,6 +99,10 @@ const modules = [
   },
 ];
 
+/**
+ * The page for a single module.
+ * @param params The parameters for the page
+ */
 const ModulePage = async ({
   params,
 }: {
@@ -117,7 +121,7 @@ const ModulePage = async ({
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-gray-50 to-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Breadcrumb */}
+        {/* The breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-gray-600 mb-12">
           <Link href="/" className="hover:text-[#39e114] transition-colors">
             Home
@@ -135,17 +139,17 @@ const ModulePage = async ({
           </span>
         </nav>
 
-        {/* Main Content */}
+        {/* The main content */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left - Image */}
+          {/* The image */}
           <div className="relative">
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              {/* Placeholder - Replace with actual module images */}
+              {/* The placeholder for the image */}
               <div
                 className={`absolute inset-0 bg-linear-to-br ${module_single?.color} opacity-20`}
               ></div>
               <Image
-                src={`/${slug}.png`}
+                src={`/images/${slug}.png`}
                 alt={module_single?.title || ""}
                 fill
                 className="object-cover"
@@ -153,7 +157,7 @@ const ModulePage = async ({
               />
             </div>
 
-            {/* Decorative element */}
+            {/* The decorative elements */}
             <div
               className={`absolute -bottom-6 -right-6 w-32 h-32 bg-linear-to-br ${module_single?.color} opacity-20 rounded-full blur-2xl -z-10`}
             ></div>
@@ -162,26 +166,26 @@ const ModulePage = async ({
             ></div>
           </div>
 
-          {/* Right - Content */}
+          {/* The content */}
           <div>
-            {/* Badge */}
+            {/* The badge */}
             <div className="inline-block px-4 py-2 bg-[#39e114] bg-opacity-10 rounded-full border border-[#39e114] border-opacity-20 mb-6">
               <span className="text-[#39e114] text-sm font-semibold">
                 MODULE
               </span>
             </div>
 
-            {/* Title */}
+            {/* The title */}
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-8">
               {module_single?.title}
             </h1>
 
-            {/* Description - Large Text */}
+            {/* The description */}
             <p className="text-2xl lg:text-3xl text-gray-700 leading-relaxed font-light mb-12">
               {module_single?.description}
             </p>
 
-            {/* CTA Buttons */}
+            {/* The call to action buttons */}
             <div className="flex flex-wrap gap-4">
               <button className="group px-8 py-4 bg-[#39e114] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
                 Get Started

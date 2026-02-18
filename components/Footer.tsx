@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import {
   FaFacebook,
   FaInstagram,
@@ -7,6 +8,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
+// The navigation links for the footer
 const navigation = {
   product: [
     { name: "Admissions", href: "#" },
@@ -64,6 +66,9 @@ const navigation = {
   ],
 };
 
+/**
+ * The Footer component displays the footer of the website.
+ */
 const Footer = () => {
   return (
     <footer
@@ -75,8 +80,16 @@ const Footer = () => {
       </h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          {/* The logo and social media links */}
           <div className="space-y-8">
-            <img className="h-16 w-auto" src="/logosms.png" alt="ShuleSmart" />
+            <Image
+  src="/images/logosms.png"
+  alt="ShuleSmart"
+  width={64}
+  height={64}
+  priority
+  className="h-16 w-auto"
+/>
             <p className="text-sm leading-6 text-gray-400">
               Empowering schools across Africa with smart, integrated management
               solutions. Streamline operations, enhance communication, and drive
@@ -95,6 +108,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
+          {/* The navigation links */}
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
@@ -171,7 +185,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Section */}
+        {/* The bottom section of the footer */}
         <div className="mt-16 border-t border-gray-800 pt-8 sm:mt-20 lg:mt-24">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs leading-5 text-gray-500">

@@ -19,10 +19,15 @@ import { IoCalendar } from "react-icons/io5";
 import { IconType } from "react-icons";
 import { FaChartBar } from "react-icons/fa";
 
+/**
+ * The ParentAppSection component displays the features of the parent app.
+ */
+
 const ParentAppSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  // The features of the parent app
   const features = [
     {
       icon: CurrencyDollarIcon,
@@ -58,6 +63,7 @@ const ParentAppSection = () => {
     },
   ];
 
+  // Animate the section when it is visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -80,7 +86,7 @@ const ParentAppSection = () => {
       ref={sectionRef}
       className="relative min-h-screen bg-linear-to-br from-white via-gray-50 to-slate-50 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Decorative background elements */}
+      {/* The decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 right-10 w-72 h-72 bg-[#39e114] opacity-10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-emerald-400 opacity-10 rounded-full blur-3xl"></div>
@@ -88,12 +94,12 @@ const ParentAppSection = () => {
 
       <div className="relative max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+          {/* The left content */}
           <div
             className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
           >
             <div className="inline-block px-4 py-2 bg-[#39e114] bg-opacity-10 rounded-full border border-[#39e114] border-opacity-20 mb-6">
-              <span className="text-[#39e114] text-sm font-semibold flex items-center gap-2">
+              <span className="text-[#white] text-sm font-semibold flex items-center gap-2">
                 <DevicePhoneMobileIcon className="w-4 h-4" />
                 MOBILE APP
               </span>
@@ -109,7 +115,7 @@ const ParentAppSection = () => {
               their fingertips.
             </p>
 
-            {/* Feature Grid */}
+            {/* The feature grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {features.map((feature, index) => (
                 <FeatureItem
@@ -121,7 +127,7 @@ const ParentAppSection = () => {
               ))}
             </div>
 
-            {/* CTA Buttons */}
+            {/* The call to action buttons */}
             <div className="flex flex-wrap gap-4">
               <button className="group relative px-8 py-4 bg-[#39e114] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
                 <span className="relative z-10 flex items-center gap-2">
@@ -140,7 +146,7 @@ const ParentAppSection = () => {
               </button>
             </div>
 
-            {/* Stats */}
+            {/* The stats */}
             <div className="mt-12 grid grid-cols-3 gap-8">
               <StatItem number="50K+" label="Active Users" />
               <StatItem number="4.8" label="App Rating" />
@@ -148,7 +154,7 @@ const ParentAppSection = () => {
             </div>
           </div>
 
-          {/* Right - Phone Mockup */}
+          {/* The phone mockup */}
           <div
             className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
           >
@@ -160,6 +166,7 @@ const ParentAppSection = () => {
   );
 };
 
+// The props for the FeatureItem component
 interface FeatureItemProps {
   index: number;
   isVisible: boolean;
@@ -174,6 +181,14 @@ interface FeatureItemProps {
     description: string;
   };
 }
+
+/**
+ * The FeatureItem component displays a single feature of the parent app.
+ * @param feature The feature to display
+ * @param index The index of the feature
+ * @param isVisible Whether the section is visible or not
+ */
+
 const FeatureItem = ({ feature, index, isVisible }: FeatureItemProps) => {
   const Icon = feature.icon;
   const [isHovered, setIsHovered] = useState(false);
@@ -198,10 +213,16 @@ const FeatureItem = ({ feature, index, isVisible }: FeatureItemProps) => {
   );
 };
 
+// The props for the StatItem component
 interface StatItemProps {
   number: string;
   label: string;
 }
+/**
+ * The StatItem component displays a single stat.
+ * @param number The number to display
+ * @param label The label for the number
+ */
 const StatItem = ({ number, label }: StatItemProps) => {
   return (
     <div className="text-center">
@@ -211,23 +232,26 @@ const StatItem = ({ number, label }: StatItemProps) => {
   );
 };
 
+/**
+ * The PhoneMockup component displays a mockup of the parent app.
+ */
 const PhoneMockup = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className="relative mx-auto max-w-sm">
-      {/* Floating elements */}
+      {/* The floating elements */}
       <div className="absolute -top-10 -right-10 w-20 h-20 bg-[#39e114] opacity-20 rounded-full animate-pulse"></div>
       <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-emerald-500 opacity-20 rounded-full animate-pulse delay-1000"></div>
 
-      {/* Phone Frame */}
+      {/* The phone frame */}
       <div className="relative bg-gray-900 rounded-[3rem] p-3 shadow-2xl transform hover:scale-105 transition-transform duration-500">
-        {/* Notch */}
+        {/* The notch */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-7 bg-gray-900 rounded-b-3xl z-10"></div>
 
-        {/* Screen */}
+        {/* The screen */}
         <div className="relative bg-white rounded-[2.5rem] overflow-hidden h-[600px]">
-          {/* Status Bar */}
+          {/* The status bar */}
           <div className="bg-linear-to-br from-[#39e114] to-emerald-600 px-6 py-4 text-white">
             <div className="flex justify-between items-center text-xs mb-4">
               <span>9:41</span>
@@ -241,9 +265,9 @@ const PhoneMockup = () => {
             <p className="text-sm opacity-90">Welcome back, John Doe</p>
           </div>
 
-          {/* Content Area */}
+          {/* The content area */}
           <div className="p-6 space-y-4">
-            {/* Quick Stats Cards */}
+            {/* The quick stats cards */}
             <div className="grid grid-cols-2 gap-3">
               <QuickStatCard
                 title="Fee Balance"
@@ -259,7 +283,7 @@ const PhoneMockup = () => {
               />
             </div>
 
-            {/* Recent Activity */}
+            {/* The recent activity */}
             <div className="bg-gray-50 rounded-2xl p-4 space-y-3">
               <h4 className="font-semibold text-gray-900 text-sm">
                 Recent Updates
@@ -285,13 +309,13 @@ const PhoneMockup = () => {
               />
             </div>
 
-            {/* Action Button */}
+            {/* The action button */}
             <button className="w-full bg-linear-to-r from-[#39e114] to-emerald-600 text-white font-semibold py-3 rounded-xl shadow-lg">
               Pay Fees Now
             </button>
           </div>
 
-          {/* Bottom Navigation */}
+          {/* The bottom navigation */}
           <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 flex justify-around">
             {[
               { icon: "🏠", label: "Home" },
@@ -315,12 +339,20 @@ const PhoneMockup = () => {
   );
 };
 
+// The props for the QuickStatCard component
 interface QuickStatCardProps {
   title: string;
   value: string;
   color: string;
   Icon: IconType;
 }
+/**
+ * The QuickStatCard component displays a single stat in a card.
+ * @param title The title of the stat
+ * @param value The value of the stat
+ * @param color The color of the card
+ * @param Icon The icon to display
+ */
 const QuickStatCard = ({ title, value, color, Icon }: QuickStatCardProps) => {
   return (
     <div
@@ -333,12 +365,20 @@ const QuickStatCard = ({ title, value, color, Icon }: QuickStatCardProps) => {
   );
 };
 
+// The props for the ActivityItem component
 interface ActivityItemProps {
   title: string;
   time: string;
   color: string;
   Icon: IconType;
 }
+/**
+ * The ActivityItem component displays a single activity item.
+ * @param Icon The icon to display
+ * @param title The title of the activity
+ * @param time The time of the activity
+ * @param color The color of the icon
+ */
 const ActivityItem = ({ Icon, title, time, color }: ActivityItemProps) => {
   return (
     <div className="flex items-start gap-3 pb-3 border-b border-gray-200 last:border-0 last:pb-0">
