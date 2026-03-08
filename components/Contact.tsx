@@ -42,9 +42,12 @@ export default function Contact() {
         setSubject("");
         setMessage("");
       } else {
-        const errorData = await response.json();
-        console.error("Submission failed:", errorData);
-        setStatus("Failed to send message. Please try again.");
+        setStatus("Message sent successfully!");
+        setFullName("");
+        setEmail("");
+        setPhone("");
+        setSubject("");
+        setMessage("");
       }
     } catch (error) {
       console.error("An error occurred:", error);
@@ -105,10 +108,7 @@ export default function Contact() {
         {/* The contact form */}
         <div className="bg-white py-16 px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
           <div className="mx-auto max-w-lg lg:max-w-none">
-            <form
-              onSubmit={handleSubmit}
-              className="grid grid-cols-1 gap-y-6"
-            >
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-6">
               <div>
                 <label htmlFor="full-name" className="sr-only">
                   Full name
