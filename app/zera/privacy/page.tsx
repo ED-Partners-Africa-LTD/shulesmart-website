@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
       }}
     >
       <h1 style={{ fontSize: "2rem", marginBottom: "0.25rem" }}>
-        Privacy Policy
+        Privacy Policy - Zera
       </h1>
       <p style={{ color: "#666", fontSize: "0.9rem", marginBottom: "2.5rem" }}>
         Last updated: May 02, 2026
