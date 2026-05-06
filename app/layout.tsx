@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ShuleSmart",
   description: "Bigger, Better Schools.",
+  verification: {
+    google: "rhnUb4iBJYmewQirt75V5n4Hi4d58Jez4N9dKMWJkYs",
+  },
 };
 
 /**
