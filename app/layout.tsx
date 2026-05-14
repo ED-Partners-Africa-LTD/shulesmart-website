@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 
 // The metadata for the website
 export const metadata: Metadata = {
-  title: "ShuleSmart",
-  description: "Bigger, Better Schools.",
+  title: "ShuleSmart - School Management System in Kenya",
+  description:
+    "ShuleSmart is a complete school management system for Kenyan schools. Manage admissions, fees, exams, HR, attendance, e-learning and more. Trusted by schools across Africa.",
   verification: {
     google: "rhnUb4iBJYmewQirt75V5n4Hi4d58Jez4N9dKMWJkYs",
   },
